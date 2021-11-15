@@ -16,8 +16,9 @@ class ItemsController < ApplicationController
     render json: item
   end
   def create
-    item = Item.create.find(params[:id])
-    render json: review, include: :user
+    user = User.find(params[:user_id])
+    item = user.items.create(params.permit(:name, :description, :price))
+    render json: item, include: :user
   end
   private
 
