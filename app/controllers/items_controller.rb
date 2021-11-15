@@ -11,6 +11,10 @@ class ItemsController < ApplicationController
     render json: items, include: :user
   end
  
+  def show 
+    item = Item.find(params[:id])
+    render json: item
+  end
   def create
     item = Item.create.find(params[:id])
     render json: review, include: :user
